@@ -27,7 +27,7 @@
 
 
 /* eslint-disable quotes, comma-spacing */
-var PrecacheConfig = [["images/bg_hr.png","41b75c5bed02198da5a89606b8332373"],["images/blacktocat.png","f7c38cda4466db73cf8c558ab040e6a4"],["images/icon_download.png","91905475187752230ad51a395d7fdf1d"],["images/sprite_download.png","eb935db9daa680716f110018580d323b"],["index.html","c213cec6378301946b9cea5e792b1a1e"],["scripts/offline-manager.js","d2b04cba2f0c3d1f55a430da0aa4c9e1"],["styles/github-light.css","937829407edf61f2b3c7da0fb82d994b"],["styles/stylesheet.css","dd29130fd15749a8a084727d3153a7fd"]];
+var PrecacheConfig = [["images/bg_hr.png","41b75c5bed02198da5a89606b8332373"],["images/blacktocat.png","f7c38cda4466db73cf8c558ab040e6a4"],["images/icon_download.png","91905475187752230ad51a395d7fdf1d"],["images/sprite_download.png","eb935db9daa680716f110018580d323b"],["index.html","b3b3c8efe884299df832641b3a8e69f1"],["scripts/offline-manager.js","d2b04cba2f0c3d1f55a430da0aa4c9e1"],["styles/github-light.css","937829407edf61f2b3c7da0fb82d994b"],["styles/stylesheet.css","284fe387a0892638ca4db5f5c71e51eb"]];
 /* eslint-enable quotes, comma-spacing */
 var CacheNamePrefix = 'sw-precache-v1--' + (self.registration ? self.registration.scope : '') + '-';
 

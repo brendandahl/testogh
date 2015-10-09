@@ -21,13 +21,13 @@
 // for an example of how you can register this script and handle various service worker events.
 
 /* eslint-env worker, serviceworker */
-/* eslint-disable no-unused-vars, no-multiple-empty-lines, max-nested-callbacks, space-before-function-paren */
+/* eslint-disable indent, no-unused-vars, no-multiple-empty-lines, max-nested-callbacks, space-before-function-paren */
 'use strict';
 
 
 
 /* eslint-disable quotes, comma-spacing */
-var PrecacheConfig = [["images/bg_hr.png","41b75c5bed02198da5a89606b8332373"],["images/blacktocat.png","f7c38cda4466db73cf8c558ab040e6a4"],["images/icon_download.png","91905475187752230ad51a395d7fdf1d"],["images/sprite_download.png","eb935db9daa680716f110018580d323b"],["index.html","b3b3c8efe884299df832641b3a8e69f1"],["scripts/offline-manager.js","d2b04cba2f0c3d1f55a430da0aa4c9e1"],["styles/github-light.css","937829407edf61f2b3c7da0fb82d994b"],["styles/stylesheet.css","284fe387a0892638ca4db5f5c71e51eb"]];
+var PrecacheConfig = [["images/bg_hr.png","96bb1f23f7691879f1e8c0c63783fa7e"],["images/blacktocat.png","d9d270173d87906eaf549a52b528ad2a"],["images/icon_download.png","eeac879dbdf05fbe48af50fd445c466f"],["images/sprite_download.png","eb935db9daa680716f110018580d323b"],["index.html","b3b3c8efe884299df832641b3a8e69f1"],["scripts/offline-manager.js","d2b04cba2f0c3d1f55a430da0aa4c9e1"],["styles/github-light.css","937829407edf61f2b3c7da0fb82d994b"],["styles/stylesheet.css","284fe387a0892638ca4db5f5c71e51eb"]];
 /* eslint-enable quotes, comma-spacing */
 var CacheNamePrefix = 'sw-precache-v1--' + (self.registration ? self.registration.scope : '') + '-';
 
@@ -183,6 +183,17 @@ self.addEventListener('fetch', function(event) {
     if (!cacheName && directoryIndex) {
       urlWithoutIgnoredParameters = addDirectoryIndex(urlWithoutIgnoredParameters, directoryIndex);
       cacheName = AbsoluteUrlToCacheName[urlWithoutIgnoredParameters];
+    }
+
+    var navigateFallback = '';
+    // Ideally, this would check for event.request.mode === 'navigate', but that is not widely
+    // supported yet:
+    // https://code.google.com/p/chromium/issues/detail?id=540967
+    // https://bugzilla.mozilla.org/show_bug.cgi?id=1209081
+    if (!cacheName && navigateFallback && event.request.headers.has('accept') &&
+        event.request.headers.get('accept').includes('text/html')) {
+      var navigateFallbackUrl = new URL(navigateFallback, self.location);
+      cacheName = AbsoluteUrlToCacheName[navigateFallbackUrl.toString()];
     }
 
     if (cacheName) {

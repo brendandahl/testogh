@@ -1,0 +1,15 @@
+language: node_js
+node_js:
+  - '0.10'
+install: npm install
+script: gulp
+env:
+  global:
+    - secure: IjkxEfjSfwQ0Zxer2z4nKjO4sh46zhiAvE43uniCum3UHhhtMkb2Bn2rKgvoXo0VYQz5FWhJKouX4BpT9mZG4uNLsHE8rxM3mYkdpeaCI5fGRDncWC6Yb0IywXUpeP+CWjKZmq+ndFaT8PoI0c8wsuCzXQhNC4+RKcadfRdZcE6LjRJNzZJPe76JddRy69Zjayt44p4vpeUjHl1AMRscVDA4dGb3tEeN5ckcPQG3UN9ujYEsgLbJVWJ7GuLnblq+PnMi7jrPBOH2yZXDm9qcmmAm0Vgu4ocNMyczCXo6j47xjUIwqqnROnKtnR0Eb3V4uXO1ezNeAugB6Ux48Gx1RMFaInaOC8nykucjxh8Aa43OdjkNyl9CQtyoOL6MeP49W+DTlTl0KGXH66mQOtotOHQWdOLofZdqIbZ2coPRsO5SXgI8Gfj8TvqpViyK3+fUISyycGnVao+qhb7YhbVVks+mhuW7qNJxOX1HWtSy95HWwwpl/CfryUjyz8jIKkqjC+RSPjaeQl4dRyGRTiKlAbnxMwvc+DO5bfKzBZQb7asNFyj/Vop+wme3IibqMmWpA+/BkIRlVgq+zpTakOKDXXAihiT77cCcFN5zw74AEP8+Xe+cd3ZZISgWu/PtbuImWMNUtudo7z965opTKs6e/iBbubEJCQ4ub4iqSbu06Vo=
+before_script:
+  - 'git config --global user.name "Travis CI"'
+  - 'git config --global user.email "brendan.dahl@gmail.com"'
+after_success:
+  - echo $TRAVIS_PULL_REQUEST
+  - echo $TRAVIS_BRANCH
+  - '[ "${TRAVIS_PULL_REQUEST}" = "false" ] && [ "${TRAVIS_BRANCH}" = "master" ] && gulp deploy'

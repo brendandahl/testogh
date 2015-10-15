@@ -12,4 +12,4 @@ before_script:
 after_success:
   - echo $TRAVIS_PULL_REQUEST
   - echo $TRAVIS_BRANCH
-  - '[ "${TRAVIS_PULL_REQUEST}" = "false" ] && [ "${TRAVIS_BRANCH}" = "master" ] && gulp deploy'
+  - [ "${TRAVIS_PULL_REQUEST}" = "false" ] && [ "${TRAVIS_BRANCH}" = "master" ] && gulp deploy
